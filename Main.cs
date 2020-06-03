@@ -15,8 +15,9 @@ namespace GTAAnimator
             mpool = new MenuPool();
             aniM = new UIMenu("GTA Animations", "by DaErich");
             mpool.Add(aniM);
-            AddAnimation("amb@world_human_hang_out_street@female_arms_crossed@idle_a", "idle_a");
             AddStop();
+            AddAnimation("amb@medic@standing@tendtodead@idle_a", "idle_a");
+            AddAnimation("amb@world_human_hang_out_street@female_arms_crossed@idle_a", "idle_a");
             mpool.RefreshIndex();
 
             Tick += OnTick;
