@@ -15,8 +15,8 @@ namespace GTAAnimator
             mpool = new MenuPool();
             aniM = new UIMenu("GTA Animations", "by DaErich");
             mpool.Add(aniM);
-            AddAnimation(aniM,"amb@world_human_hang_out_street@female_arms_crossed@idle_a", "idle_a");
-            AddStop(aniM);
+            AddAnimation("amb@world_human_hang_out_street@female_arms_crossed@idle_a", "idle_a");
+            AddStop();
             mpool.RefreshIndex();
 
             Tick += OnTick;
@@ -24,11 +24,11 @@ namespace GTAAnimator
         }
 
      
-        private void AddAnimation(UIMenu menu, string animdict, string anim)
+        private void AddAnimation(string animdict, string anim)
         {
             UIMenuItem animbtn = new UIMenuItem(animdict);
-            menu.AddItem(animbtn);
-            menu.OnItemSelect += (sender, item, index) =>{
+            aniM.AddItem(animbtn);
+            aniM.OnItemSelect += (sender, item, index) =>{
                 if(item == animbtn)
                 {
                     Player.Task.PlayAnimation(animdict, anim, 8f, -1, AnimationFlags.CancelableWithMovement);
@@ -38,11 +38,11 @@ namespace GTAAnimator
 
         }
 
-        private void AddStop(UIMenu menu)
+        private void AddStop()
         {
             UIMenuItem Stopbtn = new UIMenuItem("Stop Animation");
-            menu.AddItem(Stopbtn);
-            menu.OnItemSelect += (sender, item, index) =>
+            aniM.AddItem(Stopbtn);
+            aniM.OnItemSelect += (sender, item, index) =>
             {
                 if (item == Stopbtn)
                 {
