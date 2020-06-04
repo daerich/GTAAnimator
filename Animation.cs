@@ -4,14 +4,14 @@ namespace GTAAnimator.Animations
 {
     internal class Animation
     {
-        public Dictionary<string, string> Animations = new Dictionary<string, string>();
+        internal Dictionary<string, string> Animations = new Dictionary<string, string>();
         private string path;
-        public Animation(string Path)
+        internal Animation(string Path)
         {
             path = Path;
         }
 
-        public void Read()
+        internal void Read()
         {
             using (StreamReader sr = new StreamReader(path))
             {
