@@ -4,5 +4,5 @@
 Nothing exciting just a shothand for my favorite animations.
 
 # TBD:
-- Config file
+- ~~Config file~~
 - Submenu
