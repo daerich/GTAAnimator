@@ -2,22 +2,31 @@
 using System;
 using NativeUI;
 using System.Windows.Forms;
+using GTAAnimator.Animations;
+using System.Collections.Generic;
 
 namespace GTAAnimator
 {
    public class GTAAnimator : Script
     {
-        private Ped Player = Game.Player.Character;
+        private Ped Player;
         private MenuPool mpool;
         private UIMenu aniM;
         public GTAAnimator()
         {
+            Animation Animations = new Animation("scripts/Animations.ini");
+            Animations.Read();
+  
             mpool = new MenuPool();
             aniM = new UIMenu("GTA Animations", "by DaErich");
             mpool.Add(aniM);
             AddStop();
-            AddAnimation("amb@medic@standing@tendtodead@idle_a", "idle_a");
-            AddAnimation("amb@world_human_hang_out_street@female_arms_crossed@idle_a", "idle_a");
+            foreach (KeyValuePair<string, string> element in Animations.Animations)
+            {
+                AddAnimation(element.Key, element.Value);
+            }
+           // AddAnimation("amb@medic@standing@tendtodead@idle_a", "idle_a");
+           //AddAnimation("amb@world_human_hang_out_street@female_arms_crossed@idle_a", "idle_a");
             mpool.RefreshIndex();
 
             Tick += OnTick;
@@ -32,7 +41,7 @@ namespace GTAAnimator
             aniM.OnItemSelect += (sender, item, index) =>{
                 if(item == animbtn)
                 {
-                    Player.Task.PlayAnimation(animdict, anim, 8f, -1, AnimationFlags.CancelableWithMovement);
+                    Player.Task.PlayAnimation(animdict, anim, 8f, -1, AnimationFlags.Loop);
                 }
             };
         
@@ -61,6 +70,7 @@ namespace GTAAnimator
 
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
+            Player = Game.Player.Character;  //update Character
             if (e.KeyCode == Keys.F5 && !mpool.IsAnyMenuOpen())
             {
                 aniM.Visible = !aniM.Visible;
