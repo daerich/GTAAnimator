@@ -36,12 +36,13 @@ namespace GTAAnimator
      
         private void AddAnimation(string animdict, string anim)
         {
+            int Secondary = 32;
             UIMenuItem animbtn = new UIMenuItem(animdict);
             aniM.AddItem(animbtn);
             aniM.OnItemSelect += (sender, item, index) =>{
                 if(item == animbtn)
                 {
-                    Player.Task.PlayAnimation(animdict, anim, 8f, -1, AnimationFlags.Loop);
+                    Player.Task.PlayAnimation(animdict, anim, 8f, -1, AnimationFlags.UpperBodyOnly |(AnimationFlags)Secondary );
                 }
             };
         
