@@ -42,7 +42,7 @@ namespace GTAAnimator
             aniM.OnItemSelect += (sender, item, index) =>{
                 if(item == animbtn)
                 {
-                    Player.Task.PlayAnimation(animdict, anim, 8f, -1, AnimationFlags.UpperBodyOnly |(AnimationFlags)Secondary );
+                    Player.Task.PlayAnimation(animdict, anim, 8f, -1, AnimationFlags.UpperBodyOnly |(AnimationFlags)Secondary | AnimationFlags.Loop );
                 }
             };
         
